@@ -27,7 +27,6 @@ export default class App extends React.Component {
     };
 
     resetGame = e => {
-        e.preventDefault();
         this.setState(newGame());
     };
 
@@ -37,10 +36,12 @@ export default class App extends React.Component {
             <div>Tic Tac Toe - Fun right?</div>
             <div className='board'>
                 {this.state.board.map((tile, i) => {
-                    return  <Tile key={i} position={i} value={this.state} tile={tile} click={this.newMove}/>
+                    const winningLine = this.state.line.includes(i);
+
+                    return  <Tile key={i} position={i} winningLine={winningLine} board={this.state} piece={tile} click={this.newMove}/>
                 })}
             </div>
-            <Message value={this.state}/>
+            <Message board={this.state}/>
             <button onClick={this.resetGame}> Reset game </button>
         </F>
     );

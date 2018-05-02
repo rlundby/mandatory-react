@@ -19,29 +19,36 @@ import React from 'react';
 export default function Tile(props){
 
   const currentPosition = props.position;
-  const currentTile = props.tile;
+  const currentTile = props.piece;
+
+  let winningTile;
+
+  if (props.winningLine)  {
+      winningTile = 'line';
+  } else {
+      winningTile = '';
+  }
 
   const clickHandler = (e) => {
-    e.preventDefault();
     props.click(currentPosition);
   };
   switch(currentTile) {
       case 0:
           return(
-              <div className={'tile'} onClick={clickHandler}>
+              <div className={`tile`} onClick={clickHandler}>
 
               </div>
           );
       case 1:
           return(
-              <div className={'plr1 tile'}>
-
+              <div className={`plr1 tile ${winningTile}`}>
+                X
               </div>
           );
       case 2:
           return(
-              <div className={'plr2 tile'}>
-
+              <div className={`plr2 tile ${winningTile}`}>
+                  O
               </div>
           );
       default: return(

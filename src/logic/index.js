@@ -69,25 +69,44 @@ export const makeMove = (game, pos) => {
         line: [...game.line]
     };
 
-    //  Did someone already win?
-    if(game.state === 'plr1won') {
-        return gameBoard;
-    } else if  (game.state === 'plr2won') {
-        return gameBoard;
+    let currentGameState = game.state;
+
+    switch(currentGameState) {
+        case 'plr1won':
+            return gameBoard;
+        case 'plr2won':
+            return gameBoard;
+        case 'draw':
+            return gameBoard;
+        case 'plr1':
+            playerNumber = 1;
+            break;
+        case 'plr2':
+            playerNumber = 2;
+            break;
+        case 'default':
+            return gameBoard;
     }
 
-    // Check which player is currently playing
-    if (game.state === 'plr1') {
-        playerNumber = 1;
-
-    } else if (game.state === 'plr2') {
-        playerNumber = 2;
-    }
-
-    // Is there currently a draw?
-    if (game.state === 'draw') {
-        return game;
-    }
+    // //  Did someone already win?
+    // if(game.state === 'plr1won' ) {
+    //     return gameBoard;
+    // } else if  (game.state === 'plr2won') {
+    //     return gameBoard;
+    // }
+    //
+    // // Check which player is currently playing
+    // if (game.state === 'plr1') {
+    //     playerNumber = 1;
+    //
+    // } else if (game.state === 'plr2') {
+    //     playerNumber = 2;
+    // }
+    //
+    // // Is there currently a draw?
+    // if (game.state === 'draw') {
+    //     return game;
+    // }
 
     // Check if it's an allowed placement
     if (gameBoard.board[pos] !== 0) {

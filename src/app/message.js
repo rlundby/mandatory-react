@@ -8,7 +8,7 @@ The component will then render an appropriate message.
 import React from 'react';
 
 export default function Message(props){
-  const currentGameState = props.value.state;
+  const currentGameState = props.board.state;
 
   switch(currentGameState) {
       case 'plr1':
